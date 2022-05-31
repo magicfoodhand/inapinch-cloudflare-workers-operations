@@ -16,7 +16,7 @@ const kv = operations.forKV(KV)
 /** use kv like normal */
 const resuls = await kv.get('myValue')
 
-const summary = operations.summary() 
+const summary = operations.summary() // {"kv:get":1}
 const totalOperations = operations.summary(false) // 1
 ```
 
