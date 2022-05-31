@@ -1,6 +1,6 @@
 {
   "name": "cloudflare-workers-operations",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A small wrapper around Cloudflare KV and Worker Bindings to keep track of usage.",
   "homepage": "https://github.com/magicfoodhand/inapinch-cloudflare-workers-operations",
   "repository": {
