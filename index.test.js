@@ -1,57 +1,79 @@
 import { expect } from 'chai'
 
-import haikunate, {randomNumber, toChars} from "./index.js"
+import Operations from './index.js';
 
-describe('micro-haikunate', function () {
-  describe('#randomValue()', function () {
-    it('should return a value between 0 < maxValue', function () {
-      const result = randomNumber(1)
-      expect(result).to.equal(0)
-    });
-  })
+const kvValues = {}
 
-  describe('#toChars()', function () {
-    it('should convert a number to characters', function () {
-      expect(toChars(37)).to.equal('bb')
-    });
+const KV = {
+  get: (key) => kvValues[key],
+  getWithMetadata: (key) => kvValues[key],
+  put: (key, value) => kvValues[key] = value,
+  delete: (key) => delete kvValues[key],
+  list: (options) => ({})
+}
 
-    it('should convert a number to characters - custom', function () {
-      expect(toChars(37, 'na')).to.equal('ananna')
-    });
-  })
+describe('Operations', () => {
+  it('default value - verbose', () => {
+    const operations = new Operations();
+    expect(operations.summary()).to.deep.equal({});
+  });
 
-  describe('#haikunate()', function () {
-    it('should throw an error', function () {
-      
-      try {
-        haikunate()
-        assert.fail()
-      } catch (err) {
-        expect(err.message).to.equal("`adjectives` and `nouns` are required")
-      }
+  it('default value - not verbose', () => {
+    const operations = new Operations();
+    expect(operations.summary(false)).to.equal(0);
+  });
+
+  it('increment works', () => {
+    const operations = new Operations();
+    operations.increment('myKey');
+    expect(operations.summary()['myKey']).to.equal(1);
+  });
+
+  describe('Operations:forKV', () => {
+    it('increment for get', () => {
+      const operations = new Operations();
+      const kv = operations.forKV(KV)
+      kv.get('hello')
+      expect(operations.summary()['kv:get']).to.equal(1);
     });
     
-    it('can generate a name', function () {
-      const result = haikunate({nouns: ['car'], adjectives: ['spicy']})
-      const parts = result.split('-')
-      expect(parts[0]).to.equal('spicy')
-      expect(parts[1]).to.equal('car')
-
-      const randomValue = parseInt(parts[2])
-      expect(randomValue).to.be.least(0)
-      expect(randomValue).to.be.below(10_000)
+    it('increment for getWithMetadata - treat as get', () => {
+      const operations = new Operations();
+      const kv = operations.forKV(KV)
+      kv.getWithMetadata('hello')
+      expect(operations.summary()['kv:get']).to.equal(1);
+    });
+    
+    it('increment for put', () => {
+      const operations = new Operations();
+      const kv = operations.forKV(KV)
+      kv.put('hello', 'world')
+      expect(operations.summary()['kv:put']).to.equal(1);
     });
 
-    it('can generate a name - useChars', function () {
-      const result = haikunate({nouns: ['flower'], adjectives: ['purple'], useChars: true})
-      const parts = result.split('-')
-      expect(parts[2]).to.have.lengthOf.at.least(1)
+    it('increment for delete', () => {
+      const operations = new Operations();
+      const kv = operations.forKV(KV)
+      kv.delete('hello')
+      expect(operations.summary()['kv:delete']).to.equal(1);
     });
+    
+    it('increment for list', () => {
+      const operations = new Operations();
+      const kv = operations.forKV(KV)
+      kv.list('hello')
+      expect(operations.summary()['kv:list']).to.equal(1);
+    });
+  });
 
-    it('can override maxValue', function () {
-      const result = haikunate({nouns: ['car'], adjectives: ['spicy'], maxValue: 1})
-      const parts = result.split('-')
-      expect(parts[2]).to.equal('1')
+  describe('Operations:forWorker', () => {
+    it('increment for fetch', () => {
+      const operations = new Operations();
+      const worker = operations.forWorker({
+        fetch: () => ({})
+      })
+      worker.fetch()
+      expect(operations.summary()['worker:fetch']).to.equal(1);
     });
   });
 });

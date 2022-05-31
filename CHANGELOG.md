@@ -6,17 +6,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.5] - 2022-04-29
-Add .npmignore
-
-## [1.0.4] - 2022-04-28
-Update README, 1.0.3 not published
-
-## [1.0.2] - 2022-04-28
-Update type definitions
-
-## [1.0.1] - 2022-04-28
-remove capital letters from toChars function
-
-## [1.0.0] - 2022-04-28
-Initial Release: include haikunate, randomNumber. Add useChars and export toChars function
+## [1.0.0] - 2022-05-30
+Initial Release: Keep track of operations for KV and Worker

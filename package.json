@@ -1,14 +1,14 @@
 {
-  "name": "micro-haikunator",
-  "version": "1.0.6",
-  "description": "A small heroku like random name generator insprired by the ruby gem haikunator, with no word list.",
-  "homepage": "https://github.com/magicfoodhand/micro-haikunator",
+  "name": "@inapinch/cloudflare-workers-operations",
+  "version": "1.0.0",
+  "description": "A small wrapper around Cloudflare KV and Worker Bindings to keep track of usage.",
+  "homepage": "https://github.com/magicfoodhand/inapinch-cloudflare-workers-operations",
   "repository": {
     "type": "git",
-    "url": "https://github.com/magicfoodhand/micro-haikunator.git"
+    "url": "https://github.com/magicfoodhand/inapinch-cloudflare-workers-operations.git"
   },
   "bugs": {
-    "url": "https://github.com/magicfoodhand/micro-haikunator/issues"
+    "url": "https://github.com/magicfoodhand/inapinch-cloudflare-workers-operations/issues"
   },
   "author": "magicfoodhand",
   "license": "MIT",

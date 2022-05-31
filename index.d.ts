@@ -1,14 +1,8 @@
-export const randomNumber: (max: number) => number
+type Worker = Pick<ServiceWorkerGlobalScope, 'fetch'>;
 
-export const toChars: (value: number, characters?: string) => string
-
-type HaikunateProps = {
-    maxValue: number,
-    adjectives: string[],
-    nouns: string[],
-    useChars: boolean
+export default class Operations {
+    increment(name: string): void
+    summary(verbose: boolean?): Record<string, number> | number
+    forKV(kv: KVNamespace): KVNamespace
+    forWorker(worker: Worker): Worker
 }
-
-declare const haikunate : (props?: HaikunateProps) => string
-
-export default haikunate
