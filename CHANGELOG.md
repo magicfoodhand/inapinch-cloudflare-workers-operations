@@ -6,5 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2022-05-30
+Rename to cloudflare-worker-operations
+
 ## [1.0.0] - 2022-05-30
-Initial Release: Keep track of operations for KV and Worker
+Initial Release: Keep track of operations for KV and Worker. 
+**Not Released**

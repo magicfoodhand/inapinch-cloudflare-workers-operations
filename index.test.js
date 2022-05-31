@@ -2,16 +2,6 @@ import { expect } from 'chai'
 
 import Operations from './index.js';
 
-const kvValues = {}
-
-const KV = {
-  get: (key) => kvValues[key],
-  getWithMetadata: (key) => kvValues[key],
-  put: (key, value) => kvValues[key] = value,
-  delete: (key) => delete kvValues[key],
-  list: (options) => ({})
-}
-
 describe('Operations', () => {
   it('default value - verbose', () => {
     const operations = new Operations();
@@ -30,6 +20,16 @@ describe('Operations', () => {
   });
 
   describe('Operations:forKV', () => {
+    const kvValues = {}
+
+    const KV = {
+      get: (key) => kvValues[key],
+      getWithMetadata: (key) => kvValues[key],
+      put: (key, value) => kvValues[key] = value,
+      delete: (key) => delete kvValues[key],
+      list: (options) => ({})
+    }
+
     it('increment for get', () => {
       const operations = new Operations();
       const kv = operations.forKV(KV)

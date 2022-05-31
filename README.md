@@ -1,11 +1,11 @@
 [![Node.js Package](https://github.com/magicfoodhand/inapinch-cloudflare-worker-operations/actions/workflows/npm-test.yml/badge.svg)](https://github.com/magicfoodhand/inapinch-cloudflare-worker-operations/actions/workflows/npm-test.yml)
 
-# @inapinch/cloudflare-worker-operations
+# cloudflare-worker-operations
 
 Small wrapper around Cloudflare KV and Worker Bindings to keep track of Usage
 
 ```typescript
-import Operations from '@inapinch/cloudflare-worker-operations'
+import Operations from 'cloudflare-worker-operations'
 
 declare let KV: KVNamespace
 
